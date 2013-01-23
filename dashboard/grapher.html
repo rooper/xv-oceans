@@ -1,0 +1,66 @@
+<!-- HTML --> 
+<div id="example-section10"> 
+<div id="flotcontainer" style="width: 600px;height:200px; text-align: center; margin:0 auto;"> 
+</div> 
+</div> 
+
+<!-- Javascript --> 
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script> <script src="http://www.handydevtool.com/js/flot/excanvas.min.js"></script> 
+<script src="http://www.handydevtool.com/js/flot/jquery.flot.min.js"></script> 
+<script type="text/javascript"> 
+$(function () 
+{ 
+	var data1 = []; 
+	var totalPoints = 300; 
+	function GetData() 
+	{ 
+		data1.shift(); 
+		while (data1.length < totalPoints) 
+		{ 
+			
+			//get new data via ajax
+			var xmlhttp;
+			if (window.XMLHttpRequest)
+			  {// code for IE7+, Firefox, Chrome, Opera, Safari
+			  xmlhttp=new XMLHttpRequest();
+			  }
+			else
+			  {// code for IE6, IE5
+			  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+			  }
+			xmlhttp.onreadystatechange=function()
+			  {
+			  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+				{
+				y=parseInt(xmlhttp.responseText);
+				alert("y is: "+y);
+				} else {
+				y = 0;
+				}
+			
+			  }
+			xmlhttp.open("GET","info.html",true);
+			xmlhttp.send();
+			alert("y is: "+y);
+			data1.push(y); 
+		} 
+		var result = []; 
+			for (var i = 0; i < data1.length; ++i)
+			{ 
+				result.push([i, data1[i]]) 
+			} 
+			//alert(result);
+			return result; 
+	} 
+	
+	
+	
+		var updateInterval = 100; 
+		var plot = $.plot($("#example-section10 #flotcontainer"), [ GetData() ], { series: 			  { shadowSize: 0 }, yaxis: { min: 0, max: 100, ticks:10 }, xaxis: { show: false }, grid:{ backgroundColor: { colors: ["#969696", "#5C5C5C"] } } } );
+		function update() 
+		{ 
+			plot.setData([GetData()]); plot.draw(); setTimeout(update, updateInterval); 
+		} 
+		update();
+		 }); 
+</script>

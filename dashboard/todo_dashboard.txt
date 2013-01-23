@@ -1,0 +1,6 @@
+todo
+
+make dashboard object oriented
+
+set up a backup (array of ajax returns) for the whole session so the user can view history.
+(history widget)
