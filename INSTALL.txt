@@ -1,0 +1,33 @@
+XV: Oceans Software Suite
+Installation Instructions
+Updated Jan. 24th, 2013 by Logan Rooper
+
+Required software:
+Must have a web server with PHP support to serve the dashboard. (XAMPP http://www.apachefriends.org/en/xampp.html) is a great place to start.
+Must have a modern web browser, capable of rendering HTML5, CSS3 and running Javascript.
+Programming the Arduino requires the Arduino IDE or a similar program. (http://arduino.cc/en/main/software)
+
+Required hardware:
+Arduino (Uno or equivalent. Leonardo not recommended.)
+Arduino ethernet shield (http://arduino.cc/en/Main/ArduinoEthernetShield)
+Ethernet crossover cable
+USB-B cable
+Server with a networking card w/ ethernet port
+
+Installation and Setup:
+1. Arduino Server
+Assemble the Arduino and Ardu ethernet shield. 
+Configure the /arduino/network/network.ino to your server's preferred network settings.
+Use the Arduino IDE to program the Arduino with the network.ino file, requires a USB-B cable.
+From the Arduino IDE, open the "serial monitor". (Ensure your are on the correct baud rate.) The first line of the serial output will the the IP address of the Arduino server. Write this IP down.
+Plug the Arduino into the server.
+Access the previously found IP in a web browser or through a similar interface to test the  Arduino server.
+
+2. Dashbaord
+Install XAMPP or a similar web serving software on your server.
+Install PHP (bundled with XAMPP.)
+Configure the sensor, actuator and team settings in dashboard/team_data.php
+Place the dashboard folder into your HTCDOCS folder (or other server equivalent. eg. www folder.)
+Access your dashboard with "localhost/dashboard/dashboard.php" in a web browser.
+Open your required sensors/actuators/teams using the JQuery sidebar.
+Your module-mainframe interface is now complete!
